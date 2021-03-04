@@ -1,6 +1,6 @@
-import { TimeslotListAddComponent } from './components/timeslot-list-add/timeslot-list-add.component';
-import { TimeslotOverviewComponent } from './components/timeslot-overview/timeslot-overview.component';
-import { TimeslotEditComponent } from './components/timeslot-edit/timeslot-edit.component';
+import { TimeslotListAddComponent } from './../components/timeslot-list-add/timeslot-list-add.component';
+import { TimeslotOverviewComponent } from './../components/timeslot-overview/timeslot-overview.component';
+import { TimeslotEditComponent } from './../components/timeslot-edit/timeslot-edit.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
