@@ -1,30 +1,46 @@
 <h2>Overview</h2>
-<h3>Filters</h3>
-<div id="project" class="section">
-  <label for="currentProject">Select a project</label><br>
-  <select [formControl]="projectSelect" id="currentProject">
-    <option disabled selected value="">No project selected</option>
-    <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
-  </select>
+
+<div id="filters" class="section">
+  <mat-divider></mat-divider>
+  <h3>Filters</h3>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Select a project</mat-label>
+      <mat-select [formControl]="projectSelect" id="currentProject">
+        <mat-option disabled selected value="">No project selected</mat-option>
+        <mat-option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-label for="startDate">Show registered timeslots between</mat-label><br>
+    <mat-form-field>
+      <input matInput [formControl]="startDate" type="date" id="startDate">
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <input matInput [formControl]="endDate" type="date" id="endDate">
+    </mat-form-field>
+  </div>
 </div>
 
-<div id="period" class="section">
-  <label for="startDate">Show registered timeslots between</label><br>
-  <input [formControl]="startDate" type="date" id="startDate"> &nbsp; <input [formControl]="endDate" type="date" id="endDate">
+<div *ngIf="timeslots">
+  <mat-divider></mat-divider>
+  <h3>Timeslots</h3>
 </div>
-
-<!--<div id="filter" class="section"></div>-->
-<h3 *ngIf="timeslots">Timeslots</h3>
-
 <div id="timeslots" class="section" *ngIf="timeslots && timeslots.length && projectSelect.value > 0">
   <table>
     <tr>
-      <!--<th>Project</th>--><th>Date</th><th>Time</th>
+      <!--<th>Project</th>-->
+      <th>Date</th>
+      <th>Time</th>
     </tr>
     <ng-template ngFor let-timeslot [ngForOf]="timeslots">
       <tr *ngIf="
-      (moment(timeslot.date) | amIsAfter:moment(startDate.value):'day') &&
-      (moment(timeslot.date) | amIsBefore:moment(endDate.value):'day')
+      (moment(timeslot.date) | amAdd: 1 : 'day' | amIsAfter:moment(startDate.value):'day') &&
+      (moment(timeslot.date) | amSubtract: 1 : 'day' | amIsBefore:moment(endDate.value):'day')
       ">
         <!--<td>{{projects[timeslot.id].name}}</td>-->
         <td>{{timeslot.date | date}}</td>
