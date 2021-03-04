@@ -1,3 +1,23 @@
+# TalentosoCodingtest
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+
+## Requirements
+
+Run `npm install` in the project folder to install the required packages and the Angular environment.
+
+## Development server for frontend
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Development server for backend
+Run `ng server` for a dev backend server based on the json file at server/db.json. The server will be available at `http://localhost:8000/`.
+
+## Generate mock data
+Run `ng data` to populate server/db.json with mock project data.
+
+------
+
 # Talentoso coding test - Angular
 
 ## Opdracht:
@@ -48,19 +68,3 @@ worden
 
 ## Technologie:
 - Angular
-
-------
-
-# TalentosoCodingtest
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
-
-## Development server for frontend
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Development server for backend
-Run `ng server` for a dev backend server based on the json file at server/db.json. The server will be available at `http://localhost:8000/`.
-
-## Generate mock data
-Run `ng data` to populate server/db.json with mock project data.
