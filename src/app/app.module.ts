@@ -8,6 +8,7 @@ import { TimeslotEditComponent } from './components/timeslot-edit/timeslot-edit.
 import { TimeslotListAddComponent } from './components/timeslot-list-add/timeslot-list-add.component';
 import { TimeslotOverviewComponent } from './components/timeslot-overview/timeslot-overview.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MomentModule
   ],
   providers: [
     HttpClient

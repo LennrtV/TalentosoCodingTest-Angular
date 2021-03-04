@@ -1,6 +1,6 @@
 export class Timeslot {
   id:         number;
-  projectid:  number;
+  projectId:  number;
   date:       string;
   hours:      number;
   minutes:    number;

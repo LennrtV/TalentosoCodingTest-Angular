@@ -18,6 +18,9 @@ export class TimeslotsService {
     })
   };
 
+  // public cachedTimeSlots: Timeslot[];
+  // public cachedProjects: Timeslot[];
+
   constructor(
     private http: HttpClient
   ) { }
@@ -26,8 +29,8 @@ export class TimeslotsService {
     return this.http.get<Project[]>(this.endpoint + 'projects')
   }
 
-  getTimeslots(): Observable<Timeslot[]> {
-    return this.http.get<Timeslot[]>(this.endpoint + 'timeRegistrations')
+  getTimeslots(projectId: number): Observable<Timeslot[]> {
+    return this.http.get<Timeslot[]>(this.endpoint + 'timeRegistrations?projectId='+projectId)
   }
 
   addTimeslots(timeslots: Timeslot[]): Observable<Timeslot[]> {
