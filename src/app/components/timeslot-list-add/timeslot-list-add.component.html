@@ -1,0 +1,80 @@
+<h2>Register timeslots</h2>
+
+<div id="add-timeslots" class="section">
+  <mat-divider></mat-divider>
+  <div id="form" [formGroup]="timeslotForm">
+
+    <h3>Timeslots for:</h3>
+    <mat-form-field>
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="projectId" id="projectId">
+        <mat-option *ngFor="let project of projects" [value]="project.id">{{ project.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="timeslotForm.get('projectId').errors">
+        Select a project
+      </mat-error>
+    </mat-form-field><br>
+
+    <table *ngIf="timeslotForm.controls['projectId'].value > 0">
+      <tr>
+        <!--<th>Project</th>-->
+        <th>Date</th>
+        <th>Hours</th>
+        <th>Minutes</th>
+        <th></th>
+      </tr>
+      <!-- repeating formgroup -->
+      <ng-container formArrayName="timeslotGroups">
+        <tr *ngFor="let _ of timeslotGroups.controls; index as i">
+          <ng-container [formGroupName]="i">
+            <!--<td>{{projects[timeslot.id].name}}</td>-->
+            <td>
+              <mat-form-field>
+                <mat-label>Date</mat-label><br>
+                <input matInput formControlName="date" type="date" [id]="'date-'+i">
+                <mat-error *ngIf="_.get('date').errors">
+                  Enter a date within project bounds
+                </mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <mat-label>Hours</mat-label><br>
+                <input matInput formControlName="hours" type="number" [id]="'hours-'+i">
+                <mat-error *ngIf="_.get('hours').errors">
+                  Enter a valid amount of hours
+                </mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <mat-label>Minutes</mat-label><br>
+                <input matInput formControlName="minutes" type="number" [id]="'minutes-'+i">
+                <mat-error *ngIf="_.get('minutes').errors">
+                  Enter a valid amount of minutes
+                </mat-error>
+              </mat-form-field>
+            </td>
+            <td>
+              <button (click)="removeTimeslotRow(i)" mat-icon-button aria-label="Delete row">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+      <!-- end repeating formgroup -->
+      <tr>
+        <td colspan="3">
+          <button mat-flat-button color="primary" (click)="submit()">Register timeslots</button>
+        </td>
+        <td colspan="1">
+          <button mat-mini-fab color="primary" aria-label="Add row" (click)="addTimeslotRow()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

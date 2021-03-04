@@ -33,6 +33,10 @@ export class TimeslotsService {
     return this.http.get<Timeslot[]>(this.endpoint + 'timeRegistrations?projectId='+projectId)
   }
 
+  addTimeslot(timeslot: Timeslot): Observable<Timeslot> {
+    return this.http.post<Timeslot>(this.endpoint + 'timeRegistrations', timeslot, this.httpOptions)
+  }
+
   addTimeslots(timeslots: Timeslot[]): Observable<Timeslot[]> {
     return this.http.post<Timeslot[]>(this.endpoint + 'timeRegistrations', timeslots, this.httpOptions)
   }
