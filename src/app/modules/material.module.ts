@@ -3,7 +3,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -13,7 +15,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   exports: [
     MatIconModule,
@@ -21,7 +25,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatRadioModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {

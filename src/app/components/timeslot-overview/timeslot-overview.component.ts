@@ -12,12 +12,12 @@ import * as moment from 'moment';
   styleUrls: ['./timeslot-overview.component.scss']
 })
 export class TimeslotOverviewComponent implements OnInit {
+  public moment = moment;
 
   public projects: Project[];
   public timeslots: Timeslot[];
 
   public today: Date = new Date();
-  public moment = moment;
 
   public projectSelect: FormControl = new FormControl('');
   public startDate: FormControl = new FormControl(moment().startOf('isoWeek').format('YYYY-MM-DD'));
@@ -30,6 +30,7 @@ export class TimeslotOverviewComponent implements OnInit {
   ngOnInit(): void {
     this.timeslotService.getProjects().subscribe(projects => {
       this.projects = projects;
+      this.timeslotService.cachedProjects = this.projects;
       this.onProjectChange();
       this.onPeriodChange();
     });
@@ -45,7 +46,8 @@ export class TimeslotOverviewComponent implements OnInit {
       })
     ).subscribe(timeslots => {
       this.timeslots = timeslots;
-      console.log('timeslots: ', this.timeslots);
+      this.timeslotService.cachedTimeSlots = this.timeslots;
+      // console.log('timeslots: ', this.timeslots);
    })
   }
 
@@ -54,17 +56,17 @@ export class TimeslotOverviewComponent implements OnInit {
    */
   private onPeriodChange() {
     this.startDate.valueChanges.subscribe(d => {
-      console.log('start date: ', this.startDate.value);
+      // console.log('start date: ', this.startDate.value);
       if(this.timeslots?.length > 0){this.timeslots = [...this.timeslots]};
    });
     this.endDate.valueChanges.subscribe(d => {
-      console.log('end date: ', this.endDate.value);
+      // console.log('end date: ', this.endDate.value);
       if(this.timeslots?.length > 0){this.timeslots = [...this.timeslots]};
    });
   }
 
   public toDate(dateString: string, type: string): Date {
-    console.log(type + ' date: ', new Date(dateString));
+    // console.log(type + ' date: ', new Date(dateString));
     return new Date(dateString);
   }
 }

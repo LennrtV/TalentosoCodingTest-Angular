@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { TimeslotEditComponent } from './components/timeslot-edit/timeslot-edit.component';
 import { TimeslotListAddComponent } from './components/timeslot-list-add/timeslot-list-add.component';
 import { TimeslotOverviewComponent } from './components/timeslot-overview/timeslot-overview.component';
+import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TimeslotOverviewComponent } from './components/timeslot-overview/timesl
     AppComponent,
     TimeslotEditComponent,
     TimeslotListAddComponent,
-    TimeslotOverviewComponent
+    TimeslotOverviewComponent,
+    TimeslotDialogComponent
   ],
   imports: [
     BrowserModule,

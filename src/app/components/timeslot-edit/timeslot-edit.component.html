@@ -1,1 +1,45 @@
-<p>timeslot-edit works!</p>
+<h2>Edit timeslot</h2>
+
+<div id="edit" class="section">
+  <mat-divider></mat-divider>
+  <div id="form" [formGroup]="timeslotForm">
+    <h3>Timeslot for:</h3>
+
+    <mat-form-field>
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="projectId" id="projectId">
+        <mat-option *ngFor="let project of projects" [value]="project.id">{{ project.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="timeslotForm.get('projectId').errors">
+        Select a project
+      </mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field>
+      <mat-label>Date</mat-label><br>
+      <input matInput formControlName="date" type="date" id="date">
+      <mat-error *ngIf="timeslotForm.get('date').errors">
+        Enter a date within project bounds
+      </mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field>
+      <mat-label>Hours</mat-label><br>
+      <input matInput formControlName="hours" type="number" id="hours" (focus)="hoursAdded = ''">
+      <mat-hint>{{hoursAdded}}</mat-hint>
+      <mat-error *ngIf="timeslotForm.get('hours').errors">
+        Enter a valid amount of hours
+      </mat-error>
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <mat-label>Minutes</mat-label><br>
+      <input matInput formControlName="minutes" type="number" id="minutes">
+      <mat-error *ngIf="timeslotForm.get('minutes').errors">
+        Enter a valid amount of minutes
+      </mat-error>
+    </mat-form-field><br>
+
+    <button mat-flat-button color="primary" (click)="submit()">Save timeslot</button>
+  </div>
+</div>

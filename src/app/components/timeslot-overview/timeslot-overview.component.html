@@ -5,7 +5,7 @@
   <h3>Filters</h3>
 
   <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label>Select a project</mat-label>
       <mat-select [formControl]="projectSelect" id="currentProject">
         <mat-option disabled selected value="">No project selected</mat-option>
@@ -36,6 +36,7 @@
       <!--<th>Project</th>-->
       <th>Date</th>
       <th>Time</th>
+      <th></th>
     </tr>
     <ng-template ngFor let-timeslot [ngForOf]="timeslots">
       <tr *ngIf="
@@ -45,12 +46,13 @@
         <!--<td>{{projects[timeslot.id].name}}</td>-->
         <td>{{timeslot.date | date}}</td>
         <td>{{timeslot.hours + 'h ' + timeslot.minutes + 'm'}}</td>
+        <td><a [routerLink]="'/timeslot-edit/' + timeslot.id">edit timeslot</a></td>
       </tr>
     </ng-template>
   </table>
-  <a routerLink="/timeslot-list-add">Add timeslots</a>
+  <a routerLink="/timeslot-list-add">Register timeslots</a>
 </div>
 
 <div id="no-timeslots" class="section" *ngIf="timeslots && !timeslots.length && projectSelect.value > 0">
-  <p>No time spend yet on this project. <a routerLink="/timeslot-list-add">Add timeslots</a></p>
+  <p>No time spend yet on this project. <a routerLink="/timeslot-list-add">Register timeslots</a></p>
 </div>

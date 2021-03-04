@@ -18,8 +18,8 @@ export class TimeslotsService {
     })
   };
 
-  // public cachedTimeSlots: Timeslot[];
-  // public cachedProjects: Timeslot[];
+  public cachedProjects: Project[];
+  public cachedTimeSlots: Timeslot[];
 
   constructor(
     private http: HttpClient
