@@ -7,4 +7,12 @@ body {
 
 a {
   color: inherit;
+
+  &.active {
+    text-decoration: none;
+  }
+}
+
+.section {
+  margin-bottom: 50px;
 }

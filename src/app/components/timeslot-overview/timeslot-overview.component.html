@@ -1,1 +1,40 @@
-<p>timeslot-overview works!</p>
+<h2>Overview</h2>
+<h3>Filters</h3>
+<div id="project" class="section">
+  <label for="currentProject">Select a project</label><br>
+  <select [formControl]="projectSelect" id="currentProject">
+    <option disabled selected value="">No project selected</option>
+    <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+  </select>
+</div>
+
+<div id="period" class="section">
+  <label for="startDate">Show registered timeslots between</label><br>
+  <input [formControl]="startDate" type="date" id="startDate"> &nbsp; <input [formControl]="endDate" type="date" id="endDate">
+</div>
+
+<!--<div id="filter" class="section"></div>-->
+<h3 *ngIf="timeslots">Timeslots</h3>
+
+<div id="timeslots" class="section" *ngIf="timeslots && timeslots.length && projectSelect.value > 0">
+  <table>
+    <tr>
+      <!--<th>Project</th>--><th>Date</th><th>Time</th>
+    </tr>
+    <ng-template ngFor let-timeslot [ngForOf]="timeslots">
+      <tr *ngIf="
+      (moment(timeslot.date) | amIsAfter:moment(startDate.value):'day') &&
+      (moment(timeslot.date) | amIsBefore:moment(endDate.value):'day')
+      ">
+        <!--<td>{{projects[timeslot.id].name}}</td>-->
+        <td>{{timeslot.date | date}}</td>
+        <td>{{timeslot.hours + 'h ' + timeslot.minutes + 'm'}}</td>
+      </tr>
+    </ng-template>
+  </table>
+  <a routerLink="/timeslot-list-add">Add timeslots</a>
+</div>
+
+<div id="no-timeslots" class="section" *ngIf="timeslots && !timeslots.length && projectSelect.value > 0">
+  <p>No time spend yet on this project. <a routerLink="/timeslot-list-add">Add timeslots</a></p>
+</div>
